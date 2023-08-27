@@ -1,0 +1,177 @@
+ScreenManager:
+    id: screen_manager
+    WelcomeScreen:
+    MainScreen:
+    LoginScreen:
+    SignupScreen:    
+<WelcomeScreen>:
+    name:'welcomescreen'
+    ProgressBar:
+        id: progress
+        max: 100
+    MDScreen:
+        Image:
+            source:'assets/logo.png'
+            size_hint: None, None
+            size: dp(200), dp(200)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            allow_stretch: True
+            anim_delay:0
+            anim_rest:True
+        MDProgressBar:
+            id: progressorientation:"horizontal"
+            type:"indeterminate"
+            running_duratin: 1
+            catching_duration: 1        
+<LoginScreen>:
+    name:'loginscreen'
+    MDCard:
+        size_hint: None,None
+        size: 300,350
+        pos_hint: {'center_x': 0.5,'center_y': 0.5}
+        elevation: 10
+        padding: 25
+        spacing: 25
+        orientation: 'vertical'
+    MDLabel:
+        text:'Login'
+        font_style:'H2'
+        halign:'center'
+        pos_hint: {'center_y':0.9}
+    MDTextField:
+        id: login_email
+        hint_text: "Email"
+        icon_right: "account"
+        size_hint: (0.7,0.1)
+        pos_hint: {'center_y':0.6,'center_x':0.5}        
+        helper_text_mode:  'on_error'
+        width: 200
+        font_size: 18       
+    MDTextField:
+        id: login_password
+        hint_text: "Password"
+        icon_right: "eye-off"
+        pos_hint: {'center_y':0.4,'center_x':0.5}
+        size_hint: (0.7,0.1)
+        helper_text_mode:  'on_error'
+        width: 200
+        font_size: 18
+        password: True
+    MDRaisedButton:
+        text:'Login'
+        size_hint: (0.13,0.07)
+        pos_hint: {'center_x':0.5,'center_y':0.3}
+        on_press:
+            app.login()
+            root.manager.transition.direction = 'down'     
+    MDTextButton:
+        text: 'Create an account'
+        pos_hint: {'center_x':0.5,'center_y':0.1}
+        on_press:
+            root.manager.current = 'signupscreen'
+            root.manager.transition.direction = 'up'
+<SignupScreen>:
+    name:'signupscreen'
+    MDCard:
+        size_hint: None,None
+        size: 300,400
+        pos_hint: {'center_x': 0.5,'center_y': 0.5}
+        elevation: 10
+        padding: 25
+        spacing: 25
+        orientation: 'vertical'
+    MDLabel:
+        text:'Signup'
+        font_style:'H2'
+        halign:'center'
+        pos_hint: {'center_y':0.9}
+
+    MDTextField:
+        id: signup_username
+        hint_text: "Username"
+        icon_right: "account"
+        pos_hint: {'center_y':0.6,'center_x':0.5}
+        size_hint: (0.7,0.1)
+        helper_text_mode:  'on_error'
+        width: 200
+        font_size: 18
+    MDTextField:
+        id: signup_email
+        hint_text: "Email"
+        icon_right: "account"
+        pos_hint: {'center_y':0.75,'center_x':0.5}
+        size_hint: (0.7,0.1)
+        helper_text_mode:  'on_error'
+        width: 200
+        font_size: 18
+    MDTextField:
+        id: signup_password
+        hint_text: "Password"
+        icon_right: "eye-off"
+        pos_hint: {'center_y':0.4,'center_x':0.5}
+        size_hint: (0.7,0.1)
+        helper_text_mode:  'on_error'
+        width: 200
+        font_size: 1
+        password: True
+    MDRaisedButton:
+        text:'Signup'
+        size_hint: (0.13,0.07)
+        pos_hint: {'center_x':0.5,'center_y':0.3}
+        on_press:
+            app.signup()
+    MDTextButton:
+        text: 'Already have an account'
+        pos_hint: {'center_x':0.5,'center_y':0.1}
+        on_press:
+            root.manager.current = 'loginscreen'
+            root.manager.transition.direction = 'down'       
+<MainScreen>:
+    name: 'mainscreen'
+    MDCard:
+        size_hint: None,None
+        size: 300,500
+        pos_hint: {'center_x': 0.5,'center_y': 0.5}
+        elevation: 10
+        padding: 25
+        spacing: 25
+        orientation: 'vertical'
+    MDRaisedButton:
+        text:'Sign Out'
+        size_hint: (0.13,0.07)
+        pos_hint: {'center_x':0.3,'center_y':0.8}
+        on_press:
+            app.logout()
+            root.manager.current = 'loginscreen'
+            root.manager.transition.direction = 'up'
+    MDRaisedButton:
+        text:'Fetch Data'
+        id: waterdata
+        size_hint: (0.13,0.07)
+        pos_hint: {'center_x':0.7,'center_y':0.8}
+        on_press:
+            app.start_interval()
+    MDLabel:
+        id: data_label
+        pos_hint: {'center_x': 0.7,'center_y': 0.7}
+        font_size: "20sp"
+        font_style: "H6"   
+    MDLabel:
+        id: data_label2
+        pos_hint: {'center_x': 0.7,'center_y': 0.6}
+        font_size: "20sp"
+        font_style: "H6"  
+    MDLabel:
+        id: data_label4
+        text: "Water level is:0.67"
+        pos_hint: {'center_x': 0.7,'center_y': 0.5}
+        font_size: "20sp"
+        font_style: "H6"
+    MDLabel:
+        id: data_label5
+        text:"Distance is: 10.00cm"
+        font_size: "20sp"
+        pos_hint: {'center_x': 0.7,'center_y': 0.4}
+        font_style: "H6" 
+
+
